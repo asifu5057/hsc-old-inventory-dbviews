@@ -1,4 +1,4 @@
-SELECT
+CREATE VIEW location_due_amounts AS SELECT
 	`l`.`english_name` AS `location_name`,
 	(
 		SELECT

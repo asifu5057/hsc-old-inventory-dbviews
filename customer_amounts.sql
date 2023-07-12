@@ -1,10 +1,10 @@
-SELECT
+CREATE VIEW customer_amounts AS SELECT
     `c`.`id` AS `customer_id`,
     (
     SELECT
         SUM(`s`.`grand_total`)
     FROM
-        `inventory_live`.`sales` `s`
+        `hangu_silk_center`.`sales` `s`
     WHERE
         `s`.`customer_id` = `c`.`id`
     GROUP BY
@@ -14,7 +14,7 @@ SELECT
     SELECT
         SUM(`p`.`paid_amount`)
     FROM
-        `inventory_live`.`payments` `p`
+        `hangu_silk_center`.`payments` `p`
     WHERE
         `p`.`customer_id` = `c`.`id`
     GROUP BY
@@ -24,7 +24,7 @@ SELECT
     SELECT
         MAX(`p2`.`payment_date`)
     FROM
-        `inventory_live`.`payments` `p2`
+        `hangu_silk_center`.`payments` `p2`
     WHERE
         `p2`.`customer_id` = `c`.`id`
 ) AS `last_payment_date`,
@@ -32,7 +32,7 @@ SELECT
     SELECT
         `p3`.`paid_amount`
     FROM
-        `inventory_live`.`payments` `p3`
+        `hangu_silk_center`.`payments` `p3`
     WHERE
         `p3`.`customer_id` = `c`.`id`
     ORDER BY
@@ -41,4 +41,4 @@ SELECT
 LIMIT 1
 ) AS `last_paid_amount`
 FROM
-    `inventory_live`.`customers` `c`
+    `hangu_silk_center`.`customers` `c`

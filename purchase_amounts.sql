@@ -1,5 +1,5 @@
 /* View seller amounts */
-SELECT
+CREATE VIEW purchase_amounts AS SELECT
     `s`.`id` AS `seller_id`,
     (
     SELECT
